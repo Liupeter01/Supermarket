@@ -1,19 +1,19 @@
 #include"data_structure.h"
 #include"init.h"
 
-Commodity* Head = NULL;//´´½¨Í·½áµã
+Commodity* Head = NULL;//åˆ›å»ºå¤´ç»“ç‚¹
 
 /*
-*ÉÌÆ·ÐÅÏ¢Â¼ÈëÄ£¿é
+*å•†å“ä¿¡æ¯å½•å…¥æ¨¡å—
 */
-void InitCommdity()   //Â¼ÈëÉÌÆ·µÄÐÅÏ¢
+void InitCommdity()   //å½•å…¥å•†å“çš„ä¿¡æ¯
 {
-          if (_access("ware_base.dat", 0) != -1)    //ÅÐ¶ÏÎÄ¼þÊÇ·ñ´æÔÚ
+          if (_access("ware_base.dat", 0) != -1)    //åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨
           {       
-                    /*ÎÄ¼þ²»´æÔÚ½«ËùÓÐµÄÐÅÏ¢¼ÓÔØÈëÄÚ´æ*/
-                    /*´Ó»ù±¾ÐÅÏ¢±íÎÄ¼þÖÐ»ñµÃÉÌÆ·Ãû³Æ£¬ÓÃÓÚÐÅÏ¢µÄ±È½Ï*/
+                    /*æ–‡ä»¶ä¸å­˜åœ¨å°†æ‰€æœ‰çš„ä¿¡æ¯åŠ è½½å…¥å†…å­˜*/
+                    /*ä»ŽåŸºæœ¬ä¿¡æ¯è¡¨æ–‡ä»¶ä¸­èŽ·å¾—å•†å“åç§°ï¼Œç”¨äºŽä¿¡æ¯çš„æ¯”è¾ƒ*/
                     FILE* pfr = fopen("ware_base.dat", "r");
-                    printf("----------¼´½«ÁÐ³öËùÓÐµÄ»ù±¾ÉÌÆ·ÐÅÏ¢±íÖÐÒÑÓÐµÄÄÚÈÝ-------\n\n");
+                    printf("----------å³å°†åˆ—å‡ºæ‰€æœ‰çš„åŸºæœ¬å•†å“ä¿¡æ¯è¡¨ä¸­å·²æœ‰çš„å†…å®¹-------\n\n");
                     while (!feof(pfr))
                     {
                               char* temp = (char*)calloc(MAXBYTE, sizeof(char));
@@ -22,24 +22,24 @@ void InitCommdity()   //Â¼ÈëÉÌÆ·µÄÐÅÏ¢
                               Head = LoadMem(Head, temp);
                     }
                     fclose(pfr);
-                    /*ÄÚ´æ¼ÓÔØÍê³É*/
+                    /*å†…å­˜åŠ è½½å®Œæˆ*/
                     printf("\n-----------------------------------------------------------------\n");
           }
           while (1)
           {
                     Head = AddNodeFromTail(Head);
-                    printf("ÇëÎÊÊÇ·ñ»¹ÐèÒªÌí¼ÓÉÌÆ·(Y/N)£º");
+                    printf("è¯·é—®æ˜¯å¦è¿˜éœ€è¦æ·»åŠ å•†å“(Y/N)ï¼š");
                     getchar();
                     char c = getchar();
                     if (c == 'N')
                     {
-                              printf("ÇëÎÊÊÇ·ñ´æ´¢Êý¾Ý(Y/N)£º");
+                              printf("è¯·é—®æ˜¯å¦å­˜å‚¨æ•°æ®(Y/N)ï¼š");
                               getchar();
                               if ((c = getchar()) == 'Y')
                               {
-                                        WriteToFile(Head);   //Èç¹ûÈ·¶¨´æ´¢£¬Ôò½«ÐÅÏ¢Ð´ÈëÎÄ¼þ
+                                        WriteToFile(Head);   //å¦‚æžœç¡®å®šå­˜å‚¨ï¼Œåˆ™å°†ä¿¡æ¯å†™å…¥æ–‡ä»¶
                               }
-                              printf("¼´½«·µ»ØÊ×Ò³£º\n");
+                              printf("å³å°†è¿”å›žé¦–é¡µï¼š\n");
                               FreeCommodityMemory(Head);
                               break;
                     }
@@ -48,26 +48,26 @@ void InitCommdity()   //Â¼ÈëÉÌÆ·µÄÐÅÏ¢
 }
 
 /*
-*»ù±¾ÉÌÆ·ÐÅÏ¢
+*åŸºæœ¬å•†å“ä¿¡æ¯
 */
 Commodity* AddNodeFromTail(Commodity* phead)   
 {
-          Commodity* newnode = (Commodity*)malloc(sizeof(Commodity));  //´´½¨µÚÒ»¸ö½Úµã
+          Commodity* newnode = (Commodity*)malloc(sizeof(Commodity));  //åˆ›å»ºç¬¬ä¸€ä¸ªèŠ‚ç‚¹
           newnode->pnext = NULL;
-          printf("ÇëÊäÈëÉÌÆ·µÄ»ù±¾ÐÅÏ¢\n");
-          char* temp = (char*)malloc(sizeof(char) * MAXBYTE);  //ÁÙÊ±»º³åÇø
-          printf("ÇëÊäÈëÉÌÆ·Ãû³Æ£º");
+          printf("è¯·è¾“å…¥å•†å“çš„åŸºæœ¬ä¿¡æ¯\n");
+          char* temp = (char*)malloc(sizeof(char) * MAXBYTE);  //ä¸´æ—¶ç¼“å†²åŒº
+          printf("è¯·è¾“å…¥å•†å“åç§°ï¼š");
           scanf("%s", temp);
 
           if (phead != NULL)
           {
-                    /*²éÑ¯ÊÇ·ñÉÌÆ·ÖØÃû*/
+                    /*æŸ¥è¯¢æ˜¯å¦å•†å“é‡å*/
                     struct Commodity* ptemp = phead;
                     while (ptemp != NULL)
                     {
                               if (!strcmp(ptemp->Name, temp))
                               {
-                                        printf("ÉÌÆ·Ãû³ÆÖØÃû£¬²»¿ÉÒÔ±£´æ\n");
+                                        printf("å•†å“åç§°é‡åï¼Œä¸å¯ä»¥ä¿å­˜\n");
                                         return phead;
                               }
                               else
@@ -81,24 +81,24 @@ Commodity* AddNodeFromTail(Commodity* phead)
           strcpy(newnode->Name, temp);
           memset(temp, 0, MAXBYTE);
 
-          printf("ÇëÊäÈëÉÌÆ·ÖÖÀà£º");
+          printf("è¯·è¾“å…¥å•†å“ç§ç±»ï¼š");
           scanf("%s", temp);
           newnode->Variety = (char*)calloc(sizeof(char), strlen(temp) + 1);
           strcpy(newnode->Variety, temp);
           memset(temp, 0, MAXBYTE);
 
-          printf("ÇëÊäÈëÉÌÆ·Éú²ú³§¼Ò£º");
+          printf("è¯·è¾“å…¥å•†å“ç”Ÿäº§åŽ‚å®¶ï¼š");
           scanf("%s", temp);
           newnode->Manufacture = (char*)calloc(sizeof(char), strlen(temp) + 1);
           strcpy(newnode->Manufacture, temp);
           memset(temp, 0, MAXBYTE);
 
-          printf("ÇëÊäÈëÉÌÆ·¼Û¸ñ£º");
+          printf("è¯·è¾“å…¥å•†å“ä»·æ ¼ï¼š");
           scanf("%lf", &newnode->Price);
 
           while (1)
           {
-                    printf("ÇëÊäÈëÉÌÆ·ÓÐÐ§ÆÚ(ÊäÈëÊ¾Àý Äê·Ý-ÔÂ·Ý-ÈÕ)£º");
+                    printf("è¯·è¾“å…¥å•†å“æœ‰æ•ˆæœŸ(è¾“å…¥ç¤ºä¾‹ å¹´ä»½-æœˆä»½-æ—¥)ï¼š");            //è¿™é‡Œæœ‰ä¸ªè¾“å…¥bugæ²¡æœ‰æŽ’é™¤ï¼Œæ¯”æ–¹è¯´è¾“å…¥20018--25å°±ä¸è¡Œäº†
                     scanf("%s", temp);
                     char* px = temp;
                     int count = 0;
@@ -112,7 +112,7 @@ Commodity* AddNodeFromTail(Commodity* phead)
                     }
                     if (count != 2)
                     {
-                              printf("ÊäÈëÈÕÆÚ´íÎóÇëÖØÐÂÊäÈë\n");
+                              printf("è¾“å…¥æ—¥æœŸé”™è¯¯è¯·é‡æ–°è¾“å…¥\n");
                     }
                     else
                     {
@@ -124,17 +124,17 @@ Commodity* AddNodeFromTail(Commodity* phead)
           strcpy(newnode->Valid_date, temp);
           memset(temp, 0, MAXBYTE);
 
-          printf("ÇëÊäÈëÉÌÆ·¿â´æÁ¿£º");
+          printf("è¯·è¾“å…¥å•†å“åº“å­˜é‡ï¼š");
           scanf("%d", &newnode->Left);
 
-          printf("ÇëÊäÈëÉÌÆ·±¸×¢£º");
+          printf("è¯·è¾“å…¥å•†å“å¤‡æ³¨ï¼š");
           scanf("%s", temp);
           newnode->Addition = (char*)calloc(sizeof(char), strlen(temp) + 1);
           strcpy(newnode->Addition, temp);
 
-          newnode->TransAcation = 0;  //»¹Ã»ÓÐ½»Ò×ÐÅÏ¢
+          newnode->TransAcation = 0;  //è¿˜æ²¡æœ‰äº¤æ˜“ä¿¡æ¯
 
-          if (phead == NULL)   //²»´æÔÚÍ·½Úµã
+          if (phead == NULL)   //ä¸å­˜åœ¨å¤´èŠ‚ç‚¹
           {
                     phead = newnode;
           }
@@ -145,14 +145,14 @@ Commodity* AddNodeFromTail(Commodity* phead)
                     {
                               temp = temp->pnext;
                     }
-                    temp->pnext = newnode;  ///Á´½Ó
+                    temp->pnext = newnode;  ///é“¾æŽ¥
 
           }
-          free(temp);  //Çå¿ÕÊý¾Ý»º³åÇø
+          free(temp);  //æ¸…ç©ºæ•°æ®ç¼“å†²åŒº
           return phead;
 }
 
-void WriteToFile(struct Commodity* phead)  //½«ÉÌÆ·»ù±¾ÐÅÏ¢Ð´Èëµ½ÎÄ¼þÖ®ÖÐ ware_base.dat
+void WriteToFile(struct Commodity* phead)  //å°†å•†å“åŸºæœ¬ä¿¡æ¯å†™å…¥åˆ°æ–‡ä»¶ä¹‹ä¸­ ware_base.dat
 {
           FILE* pfw = fopen("ware_base.dat", "w");
           struct Commodity* ptemp = phead;
@@ -182,7 +182,7 @@ void WriteToFile(struct Commodity* phead)  //½«ÉÌÆ·»ù±¾ÐÅÏ¢Ð´Èëµ½ÎÄ¼þÖ®ÖÐ ware_b
           fclose(pfw);
 }
 
-/*Á´±íÄÚ´æÊÍ·Å¹¤¾ß*/
+/*é“¾è¡¨å†…å­˜é‡Šæ”¾å·¥å…·*/
 void FreeTransMemory(struct Transaction* phead)
 {
           struct Transaction* p1 = phead;
@@ -209,18 +209,18 @@ void FreeCommodityMemory(struct Commodity* phead)
 
 static Commodity* LoadMem(Commodity* phead, char* data)
 {
-          Commodity* newnode = (Commodity*)malloc(sizeof(Commodity));  //´´½¨µÚÒ»¸ö½Úµã
+          Commodity* newnode = (Commodity*)malloc(sizeof(Commodity));  //åˆ›å»ºç¬¬ä¸€ä¸ªèŠ‚ç‚¹
           newnode->pnext = NULL;
 
           /*
-          *ÒÔÏÂÁÙÊ±±äÁ¿ÓÃÓÚ´æ´¢ÒÔÏÂÐÅÏ¢
-                     char* Name;   //ÉÌÆ·Ãû³Æ
-                      char* Variety;  //ÉÌÆ·ÖÖÀà
-                      char* Manufacture;//Éú²ú³§¼Ò
-                      double Price;//¼Û¸ñ
-                     char* Valid_date;//ÓÐÐ§ÆÚ
-                     int Left;//ÉÌÆ·¿â´æÁ¿
-                      char* Addition;     //±¸×¢
+          *ä»¥ä¸‹ä¸´æ—¶å˜é‡ç”¨äºŽå­˜å‚¨ä»¥ä¸‹ä¿¡æ¯
+                     char* Name;   //å•†å“åç§°
+                      char* Variety;  //å•†å“ç§ç±»
+                      char* Manufacture;//ç”Ÿäº§åŽ‚å®¶
+                      double Price;//ä»·æ ¼
+                     char* Valid_date;//æœ‰æ•ˆæœŸ
+                     int Left;//å•†å“åº“å­˜é‡
+                      char* Addition;     //å¤‡æ³¨
           */
           char name[MAXBYTE] = { 0 };
           char variety[MAXBYTE] = { 0 };
@@ -266,7 +266,7 @@ static Commodity* LoadMem(Commodity* phead, char* data)
           newnode->Addition = (char*)malloc(sizeof(char) * (strlen(add) + 1));
           strcpy(newnode->Addition, add);
 
-          if (phead == NULL)   //²»´æÔÚÍ·½Úµã
+          if (phead == NULL)   //ä¸å­˜åœ¨å¤´èŠ‚ç‚¹
           {
                     phead = newnode;
           }
@@ -277,7 +277,7 @@ static Commodity* LoadMem(Commodity* phead, char* data)
                     {
                               temp = temp->pnext;
                     }
-                    temp->pnext = newnode;  ///Á´½Ó
+                    temp->pnext = newnode;  ///é“¾æŽ¥
           }
           return phead;
 }
